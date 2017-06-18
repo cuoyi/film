@@ -6,14 +6,14 @@
     </header>
     <div class="demo-item">
       <div class="demo-block">
-        <img :src="filmImg" />
+        <img class="posters" :src="filmImg" />
       </div>
       <div class="demo-block">
         <section class="ui-panel ui-panel-pure ui-border-t">
           <h3>迅雷下载链接：</h3>
           <ul class="ui-list ui-list-pure ui-border-tb">
-            <li class="ui-border-t" v-for="filmDown in filmDowns">
-              <textarea type="text" readonly="readonly">{{filmDown.downUrl}}</textarea>
+            <li class="ui-border-t" v-for="(filmDown,index) in filmDowns">
+              <textarea @click="selectText('url'+index)" :id="'url'+index" type="text" readonly="readonly">{{filmDown.downUrl}}</textarea>
             </li>
           </ul>
         </section>
@@ -63,6 +63,14 @@ export default {
         console.log(error);
       });
     },
+    selectText: function (id) {
+      // document.getElementById(id).focus();
+      // document.getElementById(id).select();
+      var content = document.getElementById(id);
+      content.focus();
+      content.selectionStart = 0;
+      content.selectionEnd = content.value.length;
+    }
   },
   created: function () {
     new Vue({ el: 'title' }).$el.innerText = this.title;
@@ -82,7 +90,7 @@ export default {
   text-align: center;
 }
 
-img {
+.posters {
   margin: 20px;
   width: 80%;
   height: 4rem;

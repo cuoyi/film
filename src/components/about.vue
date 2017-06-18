@@ -8,7 +8,7 @@
       <div class="demo-block">
         <section class="ui-notice">
           <div class="ui-avatar-lg">
-            <img src="../assets/img/head-img.png">
+            <img v-bind:class="" src="../assets/img/head-img.png">
           </div>
           <section class="ui-container ui-center">
             <hr>
@@ -51,6 +51,11 @@ export default {
     return {
       title: '菜鸟电影',
       filmName: '关于',
+      headImg: {
+        height: '120px',
+        width: '120px',
+        margin: 0,
+      }
     }
   },
   methods: {

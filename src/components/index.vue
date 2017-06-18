@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header class="ui-header ui-header-positive ui-border-b">
-      <h1>{{title}}</h1>
+      <h1 @click="toAbout">{{title}}</h1>
     </header>
     <section class="ui-container">
       <section id="tab">
@@ -118,6 +118,9 @@ export default {
     toLink: function (value) {
       console.log(value);
       location.href = value;
+    },
+    toAbout: function () {
+      location.href = '/about';
     }
 
   },

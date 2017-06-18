@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/components/index'
 import Detail from '@/components/detail'
-import checkbox from '@/components/checkbox'
+import About from '@/components/about'
 
 Vue.use(Router)
 
@@ -19,9 +19,9 @@ export default new Router({
             component: Detail
         },
         {
-            path: '/checkbox',
-            name: 'checkbox',
-            component: checkbox
+            path: '/About',
+            name: 'About',
+            component: About
         }
     ]
 })

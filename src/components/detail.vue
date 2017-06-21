@@ -11,9 +11,12 @@
       <div class="demo-block">
         <section class="ui-panel ui-panel-pure ui-border-t">
           <h3>迅雷下载链接：</h3>
-          <ul class="ui-list ui-list-pure ui-border-tb">
-            <li class="ui-border-t" v-for="(filmDown,index) in filmDowns">
-              <textarea @click="selectText('url'+index)" :id="'url'+index" type="text" readonly="readonly">{{filmDown.downUrl}}</textarea>
+          <ul v-for="(filmDown,index) in filmDowns" class="ui-list ui-list-function ui-border-tb">
+            <li class="ui-border-t">
+              <div class="ui-list-info">
+                {{filmDown.downUrl}}
+              </div>
+              <div class="ui-btn" :data-clipboard-text="filmDown.downUrl">点击复制</div>
             </li>
           </ul>
         </section>
@@ -29,6 +32,7 @@
         </div>
       </div>
     </div>
+  
   </div>
 </template>
 
@@ -37,6 +41,7 @@ import { zepto } from '../assets/lib/zepto.min'
 import { frozen } from '../assets/js/frozen'
 import Vue from 'vue'
 import axios from 'axios'
+import Clipboard from 'clipboard'
 
 export default {
   name: 'app',
@@ -62,20 +67,41 @@ export default {
       }).catch(function (error) {
         console.log(error);
       });
-    },
-    selectText: function (id) {
-      // document.getElementById(id).focus();
-      // document.getElementById(id).select();
-      var content = document.getElementById(id);
-      content.focus();
-      content.selectionStart = 0;
-      content.selectionEnd = content.value.length;
     }
   },
   created: function () {
     new Vue({ el: 'title' }).$el.innerText = this.title;
     this.isShow = true;
     this.getDetail();
+  },
+  mounted: function () {
+    let clipboard = new Clipboard('.ui-btn');
+
+    clipboard.on('success', function (e) {
+      console.log(e);
+      let el;
+      el = $.tips({
+        content: '复制成功',
+        stayTime: 2000,
+        type: "success"
+      })
+      el.on("tips:hide", function () {
+        console.log("tips hide");
+      })
+    });
+
+    clipboard.on('error', function (e) {
+      console.log(e);
+      let el;
+      el = $.tips({
+        content: '复制失败',
+        stayTime: 2000,
+        type: "success"
+      })
+      el.on("tips:hide", function () {
+        console.log("tips hide");
+      })
+    });
   }
 }
 </script>
@@ -105,5 +131,12 @@ textarea {
   outline: 0px;
   resize: none;
   word-wrap: normal;
+}
+
+.ui-list-info {
+  text-align: left;
+  padding-right: 12px !important;
+  margin-right: 98px;
+  word-break: break-all;
 }
 </style>

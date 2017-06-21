@@ -13,10 +13,10 @@
           <h3>迅雷下载链接：</h3>
           <ul v-for="(filmDown,index) in filmDowns" class="ui-list ui-list-function ui-border-tb">
             <li class="ui-border-t">
-              <div class="ui-list-info">
-                {{filmDown.downUrl}}
-              </div>
-              <div class="ui-btn" :data-clipboard-text="filmDown.downUrl">点击复制</div>
+              <textarea class="ui-list-info" :id="'url_'+index">{{filmDown.downUrl}}</textarea>
+              <button class="ui-btn" data-clipboard-action="copy" :data-clipboard-target="'#url_'+index">
+                点击复制
+              </button>
             </li>
           </ul>
         </section>
@@ -131,6 +131,8 @@ textarea {
   outline: 0px;
   resize: none;
   word-wrap: normal;
+  text-align: left;
+  word-break: break-all;
 }
 
 .ui-list-info {

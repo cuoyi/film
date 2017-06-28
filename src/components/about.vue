@@ -8,7 +8,7 @@
       <div class="demo-block">
         <section class="ui-notice">
           <div class="ui-avatar-lg">
-            <img v-bind:class="" src="../assets/img/head-img.png">
+            <img src="../assets/img/head-img.png">
           </div>
           <section class="ui-container ui-center">
             <hr>

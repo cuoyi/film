@@ -7,13 +7,13 @@
       <section id="tab">
         <div class="ui-tab">
           <ul class="ui-tab-nav ui-border-b">
-            <li v-for="title in titles">{{title}}</li>
+            <li v-for="(title,index) in titles" :key="index">{{title}}</li>
           </ul>
           <ul class="ui-tab-content" style="width:100%">
             <li>
               <section id="list">
                 <ul class="ui-list ui-list-text ui-list-link ui-border-tb">
-                  <li class="ui-border-t" v-for="item in items" @click="toLink(item.detailUrl)">
+                  <li class="ui-border-t" v-for="(item,index) in items" :key="index" @click="toLink(item.detailUrl)">
                     <h4 class="ui-nowrap">{{ item.title }}</h4>
                   </li>
                 </ul>

@@ -6,14 +6,14 @@
     </header>
     <div class="demo-item">
       <div class="demo-block">
-        <img class="posters" :src="filmImg" />
+        <img class="posters" :src="filmImg">
       </div>
       <div class="demo-block">
         <section class="ui-panel ui-panel-pure ui-border-t">
           <h3>迅雷下载链接：</h3>
-          <ul v-for="(filmDown,index) in filmDowns" class="ui-list ui-list-function ui-border-tb">
+          <ul v-for="(filmDown,index) in filmDowns" :key="index" class="ui-list ui-list-function ui-border-tb">
             <li class="ui-border-t">
-              <textarea class="ui-list-info" :id="'url_'+index">{{filmDown.downUrl}}</textarea>
+              <textarea class="ui-list-info" readonly :id="'url_'+index" v-text="filmDown.downUrl"></textarea>
               <button class="ui-btn" data-clipboard-action="copy" :data-clipboard-target="'#url_'+index">
                 点击复制
               </button>
@@ -61,8 +61,8 @@ export default {
       axios.get(this.apiURL + "?" + location.href.split('?')[1]).then(function (response) {
         console.log(response.data);
         self.filmName = response.data[0];
-        self.filmImg = response.data[3];
-        self.filmDowns = response.data[2];
+        self.filmDowns = response.data[1];
+        self.filmImg = response.data[2];
         self.isShow = false;
       }).catch(function (error) {
         console.log(error);

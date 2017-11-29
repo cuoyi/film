@@ -52,7 +52,7 @@ export default {
       filmName: '',
       filmImg: '',
       filmDowns: [],
-      apiURL: 'http://filmapi.flynoob.com/filmapi/api/Detail',
+      apiURL: 'http://filmapi.flynoob.com/api/Detail',
     }
   },
   methods: {
